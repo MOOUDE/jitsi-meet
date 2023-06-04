@@ -160,7 +160,7 @@ RCT_EXPORT_METHOD(setMode:(int)mode
     // Reset.
     if (mode == kAudioModeDefault) {
         forceSpeaker = NO;
-        forceEarpiece = NO;
+        forceEarpiece = YES;
     }
 
     activeMode = mode;
@@ -186,7 +186,7 @@ RCT_EXPORT_METHOD(setAudioDevice:(NSString *)device
     
     // Reset these, as we are about to compute them.
     forceSpeaker = NO;
-    forceEarpiece = NO;
+    forceEarpiece = YES;
     
     // The speaker is special, so test for it first.
     if ([device isEqualToString:kDeviceTypeSpeaker]) {
@@ -324,7 +324,7 @@ RCT_EXPORT_METHOD(updateDeviceList) {
             || [portType isEqualToString:AVAudioSessionPortBluetoothA2DP]) {
         return kDeviceTypeBluetooth;
     } else if ([portType isEqualToString:AVAudioSessionPortCarAudio]) {
-        return kDeviceTypeCar; 
+        return kDeviceTypeCar;
     } else {
         return kDeviceTypeUnknown;
     }
